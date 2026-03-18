@@ -19,16 +19,15 @@ body {
     margin: auto;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid rgba(255,215,0,0.3);
-    box-shadow: 0 0 30px rgba(255,215,0,0.2);
+    border: 1px solid gold;
+    box-shadow: 0 0 30px gold;
 }
 
-/* HEADER INFO */
+/* TOP INFO */
 .top-info {
     padding: 10px;
     background: black;
     border-bottom: 1px solid gold;
-    font-size: 13px;
 }
 
 .online {
@@ -39,17 +38,15 @@ body {
     color: gold;
     font-weight: bold;
     font-size: 16px;
-    text-shadow: 0 0 10px gold;
 }
 
-/* HEADER */
+/* HEADER LOGO */
 .header {
-    padding: 15px;
+    padding: 10px;
 }
 
-.header h1 {
-    color: gold;
-    margin: 0;
+.header img {
+    width: 200px;
 }
 
 /* IMAGE */
@@ -71,7 +68,26 @@ body {
     border: none;
     font-weight: bold;
     cursor: pointer;
+    color: black;
     background: linear-gradient(45deg, gold, orange);
+    position: relative;
+    overflow: hidden;
+}
+
+/* SHINY EFFECT */
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 /* CONTENT */
@@ -80,7 +96,14 @@ body {
 }
 
 .title {
-    color: gold;
+    color: red;
+    font-weight: bold;
+}
+
+.desc {
+    font-size: 13px;
+    color: #ccc;
+    margin-top: 10px;
 }
 
 /* NAV */
@@ -111,12 +134,12 @@ body {
 <div class="container">
 
     <div class="top-info">
-        <div class="online" id="online">Member Online : 3125</div>
-        <div class="jackpot" id="jackpot">TOTAL JACKPOT : Rp 2,345,678,900</div>
+        <div class="online" id="online">Member Online : 4,321</div>
+        <div class="jackpot" id="jackpot">TOTAL JACKPOT : Rp 8,234,567,890</div>
     </div>
 
     <div class="header">
-        <h1>ROYALHOKI77</h1>
+        <img src="https://i.imgur.com/sXTVzds.png">
     </div>
 
     <div class="banner">
@@ -129,8 +152,13 @@ body {
     </div>
 
     <div class="content">
-        <div class="title">Akses Cepat & Praktis</div>
-        <p>Platform digital dengan pengalaman premium dan sistem cepat.</p>
+        <div class="title">
+            ROYALHOKI77 ~ Link Login Situs Para Sultan Paling Cuan Modal Deposit Pulsa 5000
+        </div>
+
+        <div class="desc">
+            ROYALHOKI77 adalah sebuah link login menuju situs para sultan paling gacor dan paling mudah dapat cuan hanya dengan modal receh deposit bisa pakai pulsa operator Indonesia mulai dari 5000 sudah bisa langsung gas cari cuan.
+        </div>
     </div>
 
     <div class="nav">
@@ -146,43 +174,42 @@ body {
 
 <script>
 function go(){
-    window.location.href="https://royalhoki77go.online/?ref=beruntung27";
+    window.location.href="https://royalhoki77go.online/?ref=Maulana77";
 }
 
-/* FORMAT RUPIAH */
-function formatRupiah(num){
+/* FORMAT */
+function format(num){
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-/* MEMBER ONLINE RANDOM */
-function updateOnline(){
-    let val = Math.floor(Math.random() * (6000 - 2000)) + 2000;
-    document.getElementById("online").innerText = "Member Online : " + formatRupiah(val);
+/* ONLINE */
+function online(){
+    let val = Math.floor(Math.random()*6000)+2000;
+    document.getElementById("online").innerText = "Member Online : " + format(val);
 }
-setInterval(updateOnline, 4000);
+setInterval(online,4000);
 
-/* JACKPOT NAIK TERUS */
-let jackpot = 2345678900;
-function updateJackpot(){
-    jackpot += Math.floor(Math.random() * 5000000);
-    document.getElementById("jackpot").innerText =
-        "TOTAL JACKPOT : Rp " + formatRupiah(jackpot);
+/* JACKPOT START 8M */
+let jp = 8234567890;
+function jackpot(){
+    jp += Math.floor(Math.random()*7000000);
+    document.getElementById("jackpot").innerText = "TOTAL JACKPOT : Rp " + format(jp);
 }
-setInterval(updateJackpot, 3000);
+setInterval(jackpot,3000);
 
-/* NOTIF WD RANDOM */
-const names = ["rahmat77","andi88","rizky99","dian55","fajar22","sinta33","agus77"];
-function showNotif(){
-    let name = names[Math.floor(Math.random()*names.length)];
-    let amount = Math.floor(Math.random() * 10000000) + 500000;
+/* NOTIF WD */
+const names=["rahmat77","andi88","rizky99","dian55","fajar22","sinta33"];
+function notif(){
+    let n = names[Math.floor(Math.random()*names.length)];
+    let amt = Math.floor(Math.random()*10000000)+1000000;
     let el = document.getElementById("notif");
 
-    el.innerHTML = "💸 ID " + name + " withdraw Rp " + formatRupiah(amount);
-    el.style.display = "block";
+    el.innerHTML="💸 ID "+n+" withdraw Rp "+format(amt);
+    el.style.display="block";
 
     setTimeout(()=>{el.style.display="none";},3000);
 }
-setInterval(showNotif, 5000);
+setInterval(notif,5000);
 </script>
 
 </body>
