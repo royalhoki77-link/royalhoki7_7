@@ -6,46 +6,50 @@
 <title>ROYALHOKI77</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #000);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle, #111, #000);
     color: white;
+    text-align: center;
 }
 
-/* CONTAINER */
 .container {
     max-width: 420px;
     margin: auto;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(255,215,0,0.3);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 40px rgba(255,215,0,0.2);
+    box-shadow: 0 0 30px rgba(255,215,0,0.2);
+}
+
+/* HEADER INFO */
+.top-info {
+    padding: 10px;
+    background: black;
+    border-bottom: 1px solid gold;
+    font-size: 13px;
+}
+
+.online {
+    color: #00ffcc;
+}
+
+.jackpot {
+    color: gold;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 0 10px gold;
 }
 
 /* HEADER */
 .header {
-    padding: 18px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,215,0,0.3);
+    padding: 15px;
 }
 
 .header h1 {
     color: gold;
-    font-size: 26px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px gold;
-}
-
-.header p {
-    font-size: 12px;
-    color: #aaa;
+    margin: 0;
 }
 
 /* IMAGE */
@@ -67,68 +71,24 @@ body {
     border: none;
     font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(45deg, #FFD700, #FFA500);
-    color: black;
-    transition: 0.3s;
-    box-shadow: 0 0 15px rgba(255,215,0,0.4);
-}
-
-.btn:hover {
-    transform: scale(1.05);
+    background: linear-gradient(45deg, gold, orange);
 }
 
 /* CONTENT */
 .content {
     padding: 15px;
-    text-align: center;
 }
 
 .title {
-    font-size: 16px;
     color: gold;
-    margin-bottom: 10px;
-}
-
-.desc {
-    font-size: 13px;
-    color: #ccc;
-    line-height: 1.5;
-}
-
-/* BADGE */
-.badge {
-    display: flex;
-    justify-content: space-around;
-    margin: 15px 10px;
-    font-size: 11px;
-    color: #ddd;
-}
-
-.badge div {
-    background: rgba(255,215,0,0.1);
-    padding: 8px;
-    border-radius: 8px;
 }
 
 /* NAV */
 .nav {
     display: flex;
     justify-content: space-around;
-    border-top: 1px solid rgba(255,215,0,0.3);
     padding: 12px;
-    font-size: 12px;
-}
-
-.nav div {
-    cursor: pointer;
-}
-
-/* FOOTER */
-.footer {
-    text-align: center;
-    font-size: 11px;
-    color: #888;
-    padding: 10px;
+    border-top: 1px solid gold;
 }
 
 /* NOTIF */
@@ -136,18 +96,12 @@ body {
     position: fixed;
     bottom: 80px;
     left: 10px;
-    background: rgba(0,0,0,0.9);
+    background: black;
     border: 1px solid gold;
     padding: 10px;
     border-radius: 10px;
     font-size: 12px;
     display: none;
-    animation: fade 0.5s;
-}
-
-@keyframes fade {
-    from {opacity:0;}
-    to {opacity:1;}
 }
 </style>
 </head>
@@ -156,9 +110,13 @@ body {
 
 <div class="container">
 
+    <div class="top-info">
+        <div class="online" id="online">Member Online : 3125</div>
+        <div class="jackpot" id="jackpot">TOTAL JACKPOT : Rp 2,345,678,900</div>
+    </div>
+
     <div class="header">
         <h1>ROYALHOKI77</h1>
-        <p>AKSES CEPAT • PLATFORM DIGITAL</p>
     </div>
 
     <div class="banner">
@@ -171,17 +129,8 @@ body {
     </div>
 
     <div class="content">
-        <div class="title">Akses Mudah • Cepat • Praktis</div>
-        <div class="desc">
-            Nikmati pengalaman digital dengan tampilan premium, sistem cepat,
-            dan akses tanpa hambatan kapan saja.
-        </div>
-    </div>
-
-    <div class="badge">
-        <div>⚡ Akses Cepat</div>
-        <div>🔒 Aman</div>
-        <div>📱 Mobile Friendly</div>
+        <div class="title">Akses Cepat & Praktis</div>
+        <p>Platform digital dengan pengalaman premium dan sistem cepat.</p>
     </div>
 
     <div class="nav">
@@ -189,10 +138,6 @@ body {
         <div onclick="go()">📝 Daftar</div>
         <div onclick="go()">💬 Chat</div>
         <div onclick="go()">🎧 Bantuan</div>
-    </div>
-
-    <div class="footer">
-        © 2026 ROYALHOKI77
     </div>
 
 </div>
@@ -204,17 +149,40 @@ function go(){
     window.location.href="https://royalhoki77go.online/?ref=beruntung27";
 }
 
-/* SOCIAL PROOF */
-const names = ["Andi","Budi","Rizky","Dian","Rina","Fajar","Agus","Sinta"];
-function notif(){
-    let n = names[Math.floor(Math.random()*names.length)];
+/* FORMAT RUPIAH */
+function formatRupiah(num){
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/* MEMBER ONLINE RANDOM */
+function updateOnline(){
+    let val = Math.floor(Math.random() * (6000 - 2000)) + 2000;
+    document.getElementById("online").innerText = "Member Online : " + formatRupiah(val);
+}
+setInterval(updateOnline, 4000);
+
+/* JACKPOT NAIK TERUS */
+let jackpot = 2345678900;
+function updateJackpot(){
+    jackpot += Math.floor(Math.random() * 5000000);
+    document.getElementById("jackpot").innerText =
+        "TOTAL JACKPOT : Rp " + formatRupiah(jackpot);
+}
+setInterval(updateJackpot, 3000);
+
+/* NOTIF WD RANDOM */
+const names = ["rahmat77","andi88","rizky99","dian55","fajar22","sinta33","agus77"];
+function showNotif(){
+    let name = names[Math.floor(Math.random()*names.length)];
+    let amount = Math.floor(Math.random() * 10000000) + 500000;
     let el = document.getElementById("notif");
-    el.innerHTML = "🔔 " + n + " baru saja mengakses halaman";
+
+    el.innerHTML = "💸 ID " + name + " withdraw Rp " + formatRupiah(amount);
     el.style.display = "block";
 
     setTimeout(()=>{el.style.display="none";},3000);
 }
-setInterval(notif,6000);
+setInterval(showNotif, 5000);
 </script>
 
 </body>
